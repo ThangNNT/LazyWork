@@ -187,11 +187,18 @@ class DialogBuilder(private val context: Context) {
         return this
     }
 
-    fun show() {
+//    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+//    <item name="android:windowBackground">@drawable/bg_round_white</item>
+//    </style>
+
+    fun show(): AlertDialog {
         val layoutInflater = LayoutInflater.from(context)
         val binding = ViewDialogBinding.inflate(layoutInflater, null, false)
+        // for round white background
+        // val mBuilder = AlertDialog.Builder(context, R.style.CustomAlertDialog)
+        // .setView(binding.root)
         val mBuilder = AlertDialog.Builder(context)
-                .setView(binding.root)
+            .setView(binding.root)
         val back = ColorDrawable(Color.TRANSPARENT)
         val inset = InsetDrawable(back, convertDpToPixel(10f, context).toInt())
         val mAlertDialog = mBuilder.show()
@@ -307,6 +314,7 @@ class DialogBuilder(private val context: Context) {
             binding.btnConfirmSingleMode.setMarginTop(marginTop)
             binding.btnCancel.setMarginTop(marginTop)
         }
+        return mAlertDialog
     }
 
     private fun View.setMarginTop(marginTop: Int){
